@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.client;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorClient {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

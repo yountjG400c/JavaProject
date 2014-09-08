@@ -1,0 +1,14 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public interface IFeeCalculator 
+{
+	
+	public float calculateFee(float invoiceAmt, int useCase);
+}

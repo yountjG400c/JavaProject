@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc;
+
+import java.util.Map;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public interface IFeeCalculator 
+{
+	public float calculateFee(float invoiceAmt, int useCase);
+	public float calculateFee(float invoiceAmt, int useCase, Map<Integer, Integer> arbCritMap, float costBasis);
+}

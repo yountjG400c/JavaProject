@@ -1,0 +1,64 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc.impl;
+
+import com.ohio.ofcc.homework.calc.IFeeCalculator;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorImpl implements IFeeCalculator {
+
+	/* (non-Javadoc)
+	 * @see com.ohio.ofcc.homework.calc.IFeeCalculator#calculateFee(int, int)
+	 */
+	@Override
+	public int calculateFee(int invoiceAmt, int useCase) 
+	{
+		
+		int retVal = 0;
+		
+		switch (useCase)
+		{
+			case 1: retVal = calculateFeeCase1(invoiceAmt);
+			case 2: retVal = calculateFeeCase2(invoiceAmt);
+			case 3: retVal = calculateFeeCase3(invoiceAmt);
+			case 4: retVal = calculateFeeCase4(invoiceAmt);
+			
+		}
+		
+		
+		return retVal;
+	}
+	
+	public int calculateFeeCase1(int invoiceAmt)
+	{
+		int retVal = 0;
+		return retVal;
+		
+	}
+	
+	public int calculateFeeCase2(int invoiceAmt)
+	{
+		int retVal = 0;
+		return retVal;
+		
+	}
+	
+	public int calculateFeeCase3(int invoiceAmt)
+	{
+		int retVal = 0;
+		return retVal;
+		
+	}
+	
+	public int calculateFeeCase4(int invoiceAmt)
+	{
+		int retVal = 0;
+		return retVal;
+		
+	}
+
+}

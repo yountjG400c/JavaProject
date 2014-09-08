@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc.impl;
+
+import com.ohio.ofcc.homework.calc.IFeeCalculator;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorImpl implements IFeeCalculator {
+
+	/* (non-Javadoc)
+	 * @see com.ohio.ofcc.homework.calc.IFeeCalculator#calculateFee(int, int)
+	 */
+	@Override
+	public int calculateFee(int invoiceAmt, int useCase) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

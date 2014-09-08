@@ -1,0 +1,98 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc.impl;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import com.ohio.ofcc.homework.calc.IFeeCalculator;
+import com.ohio.ofcc.homework.util.FeeUtil;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorImpl implements IFeeCalculator {
+
+	/* (non-Javadoc)
+	 * @see com.ohio.ofcc.homework.calc.IFeeCalculator#calculateFee(int, int)
+	 */
+	@Override
+	public float calculateFee(float invoiceAmt, int useCase) 
+	{
+		
+		float retVal = 0;
+		
+		switch (useCase)
+		{
+			case 1: retVal = calculateFeeCase1(invoiceAmt);
+			case 2: retVal = calculateFeeCase2(invoiceAmt);
+			case 3: retVal = calculateFeeCase3(invoiceAmt);
+			case 4: retVal = calculateFeeCase4(invoiceAmt);
+			
+		}
+		
+		
+		return retVal;
+	}
+	
+	public float calculateFeeCase1(float invoiceAmt)
+	{
+		float retVal = 0;
+		
+		if(invoiceAmt <= 100000)
+		{
+			retVal = (invoiceAmt * 20/100);
+		} else {
+			retVal = (20000 + ((invoiceAmt - 100000) * 10/100));
+		}		
+		
+		return retVal;
+		
+	}
+	
+	public float calculateFeeCase2(float invoiceAmt)
+	{
+		float retVal = 0;
+		
+		if(invoiceAmt <= 500000){
+			retVal = calculateFeeCase1(invoiceAmt);			
+		} else {
+			retVal = calculateFeeCase1(500000);
+			retVal = retVal + ((invoiceAmt - 500000) * 5/100);
+		}
+		
+		return retVal;
+		
+	}
+	
+	/**
+	 * This method caluculates arbitrary ranges.
+	 * @param invoiceAmt
+	 * @param rangeCriteria (key- invoiceCeiling and value- invoiceRate)
+	 * @return
+	 */
+	public float calculateFeeCase2(float invoiceAmt, Map<Integer, Integer> rangeCriteria)
+	{
+		float retVal = 0;
+		Set<Integer> invoiceCeiling = rangeCriteria.keySet();
+		TreeSet<Integer> sortedinvoiceCeiling = new TreeSet<Integer>(invoiceCeiling);
+		
+		return retVal;
+		
+	}
+	
+	
+	
+	public float calculateFeeCase4(float invoiceAmt)
+	{
+		float retVal = 0;
+		return retVal;
+		
+	}
+
+}

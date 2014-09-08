@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public interface IFeeCalculator {
+
+}

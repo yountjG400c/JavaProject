@@ -1,0 +1,31 @@
+package com.ohio.ofcc.homework.calc.impl;
+
+import static org.junit.Assert.*;
+import com.ohio.ofcc.homework.calc.impl.FeeCalculatorImpl;
+
+import org.junit.Test;
+
+public class CalculateFeeTestUseCase1 {
+
+	@Test
+	public void testCalculateFeeCase1() {
+		FeeCalculatorImpl feeCalculatorImpl = new FeeCalculatorImpl();
+		feeCalculatorImpl.calculateFee(250000, 1);
+	}
+
+	@Test
+	public void testCalculateFeeCase2Float() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCalculateFeeCase2FloatMapOfIntegerInteger() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testCalculateFeeCase4() {
+		fail("Not yet implemented");
+	}
+
+}

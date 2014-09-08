@@ -1,0 +1,38 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.client;
+
+import com.ohio.ofcc.homework.calc.IFeeCalculator;
+import com.ohio.ofcc.homework.calc.impl.FeeCalculatorImpl;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorClient {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		IFeeCalculator feeCalc = new FeeCalculatorImpl();
+		float retVal = feeCalc.calculateFee(250000, 1); //20000+15000
+		System.out.println("The calculated value:" +retVal);
+	}
+	
+	/*	Use Case #1: 	250000, 1
+		
+		Use Case #2: 	600000, 2
+				   		750000, 2
+		
+		Use Case #3:	
+						150000 25
+						550000 25
+						750000 10
+						
+		Use Case #4:	200000 400000
+	 * 
+	 */
+
+}

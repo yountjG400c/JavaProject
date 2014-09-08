@@ -1,0 +1,62 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.client;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.ohio.ofcc.homework.calc.IFeeCalculator;
+import com.ohio.ofcc.homework.calc.impl.FeeCalculatorImpl;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorClient {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		IFeeCalculator feeCalc = new FeeCalculatorImpl();
+		float retVal = 0;
+		Map<Integer, Integer> arbCritMap = new HashMap<Integer, Integer>();
+		
+		//UseCase #1: Parameters are Invoice Value and Use Case Number...
+		retVal = feeCalc.calculateFee(250000, 1); //20000+15000
+		System.out.println("Use Case #1 ----> The final The calculated value:" +retVal);
+		
+		// UseCase #2: Parameters are Invoice Value and Use Case Number...
+		retVal = feeCalc.calculateFee(750000, 2); //20000+15000
+		System.out.println("Use Case #2 ----> The final The calculated value:" +retVal);
+		
+		// UseCase #3: Parameters are Invoice Amount, Monetary Ranges, Percentage Ranges & Use Case Number...
+		arbCritMap.put(150000, 25);
+		arbCritMap.put(550000, 15);
+		arbCritMap.put(750000, 10);
+		
+		retVal = feeCalc.calculateFee(900000, 3, arbCritMap); //20000+15000
+		System.out.println("Use Case #3 ----> The final The calculated value:" +retVal);
+				
+		// UseCase #4: Parameters are Cost Basis, Invoice Amount & Use Case Number...
+		retVal = feeCalc.calculateFee(250000, 4, 600000); //20000+15000
+		System.out.println("Use Case #4 ----> The final calculated value:" +retVal);
+	}
+	
+	/*	Use Case #1: 	250000, 1
+		
+		Use Case #2: 	600000, 2
+				   		750000, 2
+		
+		Use Case #3:	900000 3
+						
+						150000 25
+						550000 15
+						750000 10
+						
+		Use Case #4:	200000 400000 4
+	 * 
+	 */
+
+}

@@ -1,0 +1,71 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc.impl;
+
+import com.ohio.ofcc.homework.calc.IFeeCalculator;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorImpl implements IFeeCalculator {
+
+	/* (non-Javadoc)
+	 * @see com.ohio.ofcc.homework.calc.IFeeCalculator#calculateFee(int, int)
+	 */
+	@Override
+	public float calculateFee(float invoiceAmt, int useCase) 
+	{
+		
+		float retVal = 0;
+		
+		switch (useCase)
+		{
+			case 1: retVal = calculateFeeCase1(invoiceAmt);
+			case 2: retVal = calculateFeeCase2(invoiceAmt);
+			case 3: retVal = calculateFeeCase3(invoiceAmt);
+			case 4: retVal = calculateFeeCase4(invoiceAmt);
+			
+		}
+		
+		
+		return retVal;
+	}
+	
+	public float calculateFeeCase1(float invoiceAmt)
+	{
+		float retVal = 0;
+		
+		if(invoiceAmt <= 100000)
+		{
+			retVal = (invoiceAmt * 20/100);
+		}
+		
+		
+		return retVal;
+		
+	}
+	
+	public float calculateFeeCase2(float invoiceAmt)
+	{
+		float retVal = 0;
+		return retVal;
+		
+	}
+	
+	public float calculateFeeCase3(float invoiceAmt)
+	{
+		float retVal = 0;
+		return retVal;
+		
+	}
+	
+	public float calculateFeeCase4(float invoiceAmt)
+	{
+		float retVal = 0;
+		return retVal;
+		
+	}
+
+}

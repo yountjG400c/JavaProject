@@ -1,0 +1,25 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.util;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeUtil {
+	
+	public static List<Integer> sortTreeSetDesc(Set<Integer> sortedFeeRate){
+		LinkedList<Integer> retList =new LinkedList<Integer>();
+		for(int element:sortedFeeRate){
+			retList.addFirst(element);
+		}
+		return retList;
+	}
+
+}

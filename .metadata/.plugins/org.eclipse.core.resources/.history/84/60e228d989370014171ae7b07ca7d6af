@@ -1,0 +1,175 @@
+/**
+ * 
+ */
+package com.ohio.ofcc.homework.calc.impl;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import com.ohio.ofcc.homework.calc.IFeeCalculator;
+
+/**
+ * @author John_M_Yount
+ *
+ */
+public class FeeCalculatorImpl implements IFeeCalculator {
+
+	/* (non-Javadoc)
+	 * @see com.ohio.ofcc.homework.calc.IFeeCalculator#calculateFee(int, int)
+	 */
+	@Override
+	public float calculateFee(float invoiceAmt, int useCase, Map<Integer, Integer> arbCritMap, float costBasis) 
+	{
+		
+		float retVal = 0;
+		
+		switch (useCase)
+		{
+			case 1: retVal = calculateFeeCase1(invoiceAmt);break;
+			case 2: retVal = calculateFeeCase2(invoiceAmt);break;
+			case 3: {
+				if(null ==  arbCritMap){
+					retVal = calculateFeeCase2(invoiceAmt);					
+				}else{
+					retVal = calculateFeeCase2(invoiceAmt,arbCritMap);
+				}				
+			}
+			break;
+			case 4: retVal = calculateFeeCase4(invoiceAmt, costBasis);break;
+			
+		}
+		
+		
+		return retVal;
+	}
+	
+	@Override
+	public float calculateFee(float invoiceAmt, int useCase){
+		return calculateFee(invoiceAmt, useCase, null); 
+	}
+	
+	@Override
+	public float calculateFee(float invoiceAmt, int useCase, float costBasis){
+		return calculateFee(invoiceAmt, useCase, null, costBasis); 
+	}
+	
+	@Override
+	public float calculateFee(float invoiceAmt, int useCase, Map<Integer, Integer> arbCritMap){
+		return calculateFee(invoiceAmt, useCase, arbCritMap, 0); 
+	}
+	
+	public float calculateFeeCase1(float invoiceAmt)
+	{
+		float retVal = 0;
+		
+		if(invoiceAmt <= 100000)
+		{
+			retVal = (invoiceAmt * 20/100);
+		} else {
+			retVal = (((invoiceAmt - 100000) * 10/100));
+			System.out.println(retVal);
+			retVal = (20000+((invoiceAmt - 100000) * 10/100));
+			System.out.println(retVal);
+		}		
+		
+		return retVal;
+		
+	}
+	
+	public float calculateFeeCase2(float invoiceAmt)
+	{
+		float retVal = 0;
+		
+		if(invoiceAmt <= 500000){
+			retVal = calculateFeeCase1(invoiceAmt);			
+		} else {
+			retVal = calculateFeeCase1(500000);
+			retVal = retVal + ((invoiceAmt - 500000) * 5/100);
+		}
+		
+		return retVal;
+		
+	}
+	
+	/**
+	 * This method caluculates arbitrary ranges.
+	 * @param invoiceAmt
+	 * @param rangeCriteria (key- invoiceCeiling and value- invoiceRate)
+	 * @return
+	 */
+	public float calculateFeeCase2(float invoiceAmt, Map<Integer, Integer> rangeCriteria)
+	{
+		/*arbCritMap.put(150000, 25);
+		arbCritMap.put(550000, 15);
+		arbCritMap.put(750000, 10);*/
+		float retVal = 0;
+		int prevCeiling = 0;
+		Set<Integer> invoiceCeilingSet = rangeCriteria.keySet();
+		TreeSet<Integer> sortedInvoiceCeiling = new TreeSet<Integer>(invoiceCeilingSet);
+		for(Integer invoiceCeiling:sortedInvoiceCeiling){
+			System.out.println("The invoiceCeiling "+invoiceCeiling);
+			System.out.println("The value from map - "+ rangeCriteria.get(invoiceCeiling));
+			if(invoiceAmt<=invoiceCeiling){
+				System.out.println("In if criteria");
+				retVal = retVal + ((invoiceAmt-prevCeiling) * (rangeCriteria.get(invoiceCeiling).intValue())/100);				
+			}else{
+				System.out.println("In else criteria");
+				retVal = retVal + (invoiceCeiling.intValue() * (rangeCriteria.get(invoiceCeiling).intValue()/100));
+			}
+			prevCeiling = invoiceCeiling;
+			System.out.println("return value: "+retVal);
+		}
+		return retVal;
+		
+	}
+	
+	
+	public float calculateFeeCase4(float invoiceAmt, float costBasis)
+	{
+		float retVal = 0;
+		float amtTotal = invoiceAmt+costBasis;
+		if(amtTotal < 100000){
+			//whole amount 20 %
+			retVal = invoiceAmt * 20/100;
+		}else if(amtTotal < 500000){			
+			if(costBasis<100000){
+				//part 1 amount 20 %
+				retVal = (invoiceAmt*20/100);
+				//part 2 amount 10 %
+				retVal = retVal + ((amtTotal - 100000)*10/100);
+			}else{
+				//whole amt 10%
+				retVal = invoiceAmt * 10/100;
+			}
+		}else {
+			//amt total is greater that 500000
+			if(costBasis<=500000){
+				if(costBasis<=100000){
+					//part 1 amount 20%
+					retVal = (invoiceAmt*20/100);
+					//part 2 amount 10%
+					retVal = retVal + ((amtTotal - 100000)*10/100);
+					//part 3 amount 5%
+					retVal = retVal + ((amtTotal - 500000)*5/100);
+				}else{
+					//costBasis is between 100000 and 500000					
+					//part 1 amount 10%
+					retVal = (invoiceAmt*10/100);
+					//part 1 amount 5%
+					retVal = retVal + (amtTotal - 500000)*5/100;
+				}
+			}else{
+				//whole amt as 5%
+				retVal = invoiceAmt * 10/100;
+			}
+			
+			
+		}
+		return retVal;
+		
+	}
+	
+	
+
+}
